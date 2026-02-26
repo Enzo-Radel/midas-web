@@ -5,13 +5,13 @@ const route = useRoute()
 
 // Mock: opções do menu lateral (será substituído por dados da API)
 const sidebarItems = [
-  { path: '/', name: 'Dashboard', icon: '◉' },
-  { path: '/transacoes', name: 'Transações', icon: '⇄' },
-  { path: '/carteira', name: 'Carteira', icon: '¤' },
-  { path: '/investimentos', name: 'Investimentos', icon: '📈' },
-  { path: '/metas', name: 'Metas', icon: '🎯' },
-  { path: '/relatorios', name: 'Relatórios', icon: '📊' },
-  { path: '/configuracoes', name: 'Configurações', icon: '⚙' },
+  { path: '/', name: 'Dashboard', icon: 'gauge' },
+  { path: '/transacoes', name: 'Transações', icon: 'right-left' },
+  { path: '/carteira', name: 'Carteira', icon: 'wallet' },
+  { path: '/investimentos', name: 'Investimentos', icon: 'chart-line' },
+  { path: '/metas', name: 'Metas', icon: 'bullseye' },
+  { path: '/relatorios', name: 'Relatórios', icon: 'chart-column' },
+  { path: '/configuracoes', name: 'Configurações', icon: 'gear' },
 ]
 
 // Mock: usuário no header (será substituído por dados da API)
@@ -36,7 +36,7 @@ const hasUnreadNotifications = true
         <nav class="sidebar-nav">
           <RouterLink v-for="item in sidebarItems" :key="item.path" :to="item.path" class="sidebar-link"
             :class="{ active: route.path === item.path }">
-            <span class="sidebar-link-icon">{{ item.icon }}</span>
+            <FontAwesomeIcon :icon="['fas', item.icon]" class="sidebar-link-icon" />
             <span class="sidebar-link-label">{{ item.name }}</span>
           </RouterLink>
         </nav>
@@ -53,7 +53,7 @@ const hasUnreadNotifications = true
         </div>
         <div class="header-right">
           <button type="button" class="header-btn" title="Notificações" aria-label="Notificações">
-            <span class="header-btn-icon">🔔</span>
+            <FontAwesomeIcon icon="bell" class="header-btn-icon" />
             <span v-if="hasUnreadNotifications" class="header-badge" aria-hidden="true" />
           </button>
           <div class="header-user">
@@ -161,6 +161,7 @@ const hasUnreadNotifications = true
 }
 
 .sidebar-link-icon {
+  width: 1.125rem;
   font-size: 1.125rem;
   opacity: 0.9;
 }
