@@ -116,8 +116,8 @@ const hasUnreadNotifications = true
   width: 2.25rem;
   height: 2.25rem;
   border-radius: 0.5rem;
-  background: linear-gradient(135deg, #d4af37 0%, #b8962e 100%);
-  color: #1a1a1a;
+  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
+  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -156,8 +156,8 @@ const hasUnreadNotifications = true
 }
 
 .sidebar-link.active {
-  background: rgba(212, 175, 55, 0.2);
-  color: #d4af37;
+  background: rgba(56, 118, 242, 0.2);
+  color: var(--color-accent);
 }
 
 .sidebar-link-icon {
@@ -244,7 +244,7 @@ const hasUnreadNotifications = true
   width: 0.5rem;
   height: 0.5rem;
   border-radius: 50%;
-  background: #d4af37;
+  background: var(--color-accent);
 }
 
 .header-user {
@@ -259,8 +259,8 @@ const hasUnreadNotifications = true
   width: 2.25rem;
   height: 2.25rem;
   border-radius: 50%;
-  background: linear-gradient(135deg, #d4af37 0%, #b8962e 100%);
-  color: #1a1a1a;
+  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
+  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;

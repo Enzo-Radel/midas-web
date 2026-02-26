@@ -9,6 +9,10 @@
     --sidebar-gap: 12px;
     /* Bordas arredondadas do painel */
     --sidebar-panel-radius: 35px;
+    /* Cores de destaque (azul) */
+    --color-accent: #3876F2;
+    --color-accent-dark: #103799;
+    --color-accent-light: #5B9BF5;
 }
 
 #app {
