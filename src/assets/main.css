@@ -1,10 +1,14 @@
 @import './base.css';
 
 :root {
-    --sidebar-width: 260px;
+    --sidebar-width: 300px;
     --header-height: 64px;
     --sidebar-bg: var(--vt-c-black-soft);
     --sidebar-text: var(--vt-c-white);
+    /* Espaço entre a primeira camada e o painel flutuante */
+    --sidebar-gap: 12px;
+    /* Bordas arredondadas do painel */
+    --sidebar-panel-radius: 35px;
 }
 
 #app {
