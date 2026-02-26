@@ -13,10 +13,16 @@ import {
     faChartColumn,
     faGear,
     faBell,
+    faSun,
+    faMoon,
 } from '@fortawesome/free-solid-svg-icons'
 
 import App from './App.vue'
 import router from './router'
+import { getStoredTheme } from './stores/theme'
+
+// Aplica o tema salvo antes da primeira renderização para evitar flash
+document.documentElement.setAttribute('data-theme', getStoredTheme())
 
 library.add(
     faGauge,
@@ -27,6 +33,8 @@ library.add(
     faChartColumn,
     faGear,
     faBell,
+    faSun,
+    faMoon,
 )
 
 const app = createApp(App)

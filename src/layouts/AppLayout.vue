@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { RouterLink, RouterView, useRoute } from 'vue-router'
+import { useThemeStore } from '../stores/theme'
 
 const route = useRoute()
+const themeStore = useThemeStore()
 
 // Mock: opções do menu lateral (será substituído por dados da API)
 const sidebarItems = [
@@ -52,6 +54,15 @@ const hasUnreadNotifications = true
           <h1 class="header-title">{{ route.meta?.title ?? 'Dashboard' }}</h1>
         </div>
         <div class="header-right">
+          <button
+            type="button"
+            class="header-btn"
+            :title="themeStore.isDark ? 'Usar tema claro' : 'Usar tema escuro'"
+            :aria-label="themeStore.isDark ? 'Ativar light mode' : 'Ativar dark mode'"
+            @click="themeStore.toggleTheme()"
+          >
+            <FontAwesomeIcon :icon="themeStore.isDark ? 'sun' : 'moon'" class="header-btn-icon" />
+          </button>
           <button type="button" class="header-btn" title="Notificações" aria-label="Notificações">
             <FontAwesomeIcon icon="bell" class="header-btn-icon" />
             <span v-if="hasUnreadNotifications" class="header-badge" aria-hidden="true" />
@@ -97,11 +108,11 @@ const hasUnreadNotifications = true
   display: flex;
   flex-direction: column;
   min-height: 0;
-  background: var(--sidebar-bg, var(--vt-c-black-soft));
-  color: var(--sidebar-text, var(--vt-c-white));
+  background: var(--sidebar-bg);
+  color: var(--sidebar-text);
   border-radius: var(--sidebar-panel-radius, 1rem);
   overflow: hidden;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--sidebar-panel-shadow);
 }
 
 .sidebar-brand {
@@ -109,15 +120,17 @@ const hasUnreadNotifications = true
   align-items: center;
   gap: 0.75rem;
   padding: 1.5rem 1.25rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--sidebar-brand-bg, transparent);
+  color: var(--sidebar-brand-text, inherit);
+  border-bottom: 1px solid var(--sidebar-brand-border, var(--sidebar-border));
 }
 
 .brand-icon {
   width: 2.25rem;
   height: 2.25rem;
   border-radius: 0.5rem;
-  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
-  color: #fff;
+  background: var(--brand-icon-bg, linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%));
+  color: var(--brand-icon-color, #fff);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -145,13 +158,13 @@ const hasUnreadNotifications = true
   gap: 0.75rem;
   padding: 0.75rem 1rem;
   border-radius: 0.5rem;
-  color: rgba(255, 255, 255, 0.75);
+  color: var(--sidebar-link-color);
   text-decoration: none;
   transition: background 0.2s, color 0.2s;
 }
 
 .sidebar-link:hover {
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--sidebar-link-hover-bg);
   color: var(--sidebar-text);
 }
 
@@ -172,12 +185,12 @@ const hasUnreadNotifications = true
 
 .sidebar-footer {
   padding: 1rem 1.25rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid var(--sidebar-border);
 }
 
 .sidebar-version {
   font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.4);
+  color: var(--sidebar-version-color);
 }
 
 .main-wrapper {

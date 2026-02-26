@@ -3,8 +3,6 @@
 :root {
     --sidebar-width: 300px;
     --header-height: 64px;
-    --sidebar-bg: var(--vt-c-black-soft);
-    --sidebar-text: var(--vt-c-white);
     /* Espaço entre a primeira camada e o painel flutuante */
     --sidebar-gap: 12px;
     /* Bordas arredondadas do painel */
@@ -13,6 +11,41 @@
     --color-accent: #3876F2;
     --color-accent-dark: #103799;
     --color-accent-light: #5B9BF5;
+}
+
+/* Light mode: sidebar com mais contraste e sombra marcante */
+:root,
+[data-theme="light"] {
+    --sidebar-bg: #f6f8fb;
+    --sidebar-text: #1a1a1a;
+    --sidebar-border: rgba(0, 0, 0, 0.1);
+    --sidebar-link-color: rgba(0, 0, 0, 0.75);
+    --sidebar-link-hover-bg: rgba(0, 0, 0, 0.08);
+    --sidebar-version-color: rgba(0, 0, 0, 0.5);
+    --sidebar-panel-shadow: 0 4px 16px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.08);
+    /* Área Midas: fundo em degradê azul, texto e ícone invertidos */
+    --sidebar-brand-bg: linear-gradient(120deg, var(--color-accent-dark) 0%, var(--color-accent) 20%, var(--color-accent-dark) 100%);
+    --sidebar-brand-text: #fff;
+    --sidebar-brand-border: rgba(255, 255, 255, 0.2);
+    --brand-icon-bg: #fff;
+    --brand-icon-color: var(--color-accent);
+}
+
+/* Dark mode: sidebar escura */
+[data-theme="dark"] {
+    --sidebar-bg: var(--vt-c-black-soft);
+    --sidebar-text: var(--vt-c-white);
+    --sidebar-border: rgba(255, 255, 255, 0.08);
+    --sidebar-link-color: rgba(255, 255, 255, 0.75);
+    --sidebar-link-hover-bg: rgba(255, 255, 255, 0.08);
+    --sidebar-version-color: rgba(255, 255, 255, 0.4);
+    --sidebar-panel-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+    /* Área Midas: igual ao resto da sidebar, ícone azul com M branco */
+    --sidebar-brand-bg: transparent;
+    --sidebar-brand-text: var(--vt-c-white);
+    --sidebar-brand-border: rgba(255, 255, 255, 0.08);
+    --brand-icon-bg: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
+    --brand-icon-color: #fff;
 }
 
 #app {
