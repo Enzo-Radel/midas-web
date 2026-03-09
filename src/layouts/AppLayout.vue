@@ -16,6 +16,14 @@ const sidebarItems = [
   { path: '/configuracoes', name: 'Configurações', icon: 'gear' },
 ]
 
+// Mock: 4 opções do menu inferior (mobile) – apenas ícones
+const bottomNavItems = [
+  { path: '/', icon: 'gauge', label: 'Início' },
+  { path: '/transacoes', icon: 'right-left', label: 'Transações' },
+  { path: '/carteira', icon: 'wallet', label: 'Carteira' },
+  { path: '/investimentos', icon: 'chart-line', label: 'Investimentos' },
+]
+
 // Mock: usuário no header (será substituído por dados da API)
 const user = {
   name: 'Usuário Demo',
@@ -82,6 +90,20 @@ const hasUnreadNotifications = true
       <main class="main-content">
         <RouterView />
       </main>
+
+      <!-- Menu inferior (mobile): visível apenas em telas pequenas -->
+      <nav class="bottom-nav" aria-label="Navegação principal">
+        <RouterLink
+          v-for="item in bottomNavItems"
+          :key="item.path"
+          :to="item.path"
+          class="bottom-nav-link"
+          :class="{ active: route.path === item.path }"
+          :aria-label="item.label"
+        >
+          <FontAwesomeIcon :icon="['fas', item.icon]" class="bottom-nav-icon" />
+        </RouterLink>
+      </nav>
     </div>
   </div>
 </template>
@@ -306,32 +328,61 @@ const hasUnreadNotifications = true
   overflow: auto;
 }
 
+/* Menu inferior: apenas em mobile */
+.bottom-nav {
+  display: none;
+}
+
 @media (max-width: 768px) {
   .sidebar {
-    width: 72px;
-    min-width: 72px;
-    padding: 8px;
-  }
-
-  .sidebar-panel {
-    border-radius: 0.75rem;
-  }
-
-  .brand-name,
-  .sidebar-link-label,
-  .sidebar-footer,
-  .header-user-info {
     display: none;
   }
 
-  .sidebar-brand {
-    justify-content: center;
-    padding: 1rem;
+  .main-content {
+    padding-bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px) + 56px);
   }
 
-  .sidebar-link {
+  .bottom-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: calc(56px + env(safe-area-inset-bottom, 0px));
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    background: var(--color-background);
+    border-top: 1px solid var(--color-border);
+    z-index: 100;
+  }
+
+  .bottom-nav-link {
+    flex: 1;
+    display: flex;
+    align-items: center;
     justify-content: center;
-    padding: 0.875rem;
+    height: 56px;
+    color: var(--color-text);
+    opacity: 0.7;
+    transition: color 0.2s, opacity 0.2s;
+  }
+
+  .bottom-nav-link:hover {
+    opacity: 1;
+  }
+
+  .bottom-nav-link.active {
+    color: var(--color-accent);
+    opacity: 1;
+  }
+
+  .bottom-nav-icon {
+    font-size: 1.375rem;
+  }
+
+  .header-user-info {
+    display: none;
   }
 
   .header-user {
